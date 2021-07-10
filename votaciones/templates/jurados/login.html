@@ -1,8 +1,26 @@
 {% extends "base.html" %} {% block content %}
 
+<div id="a-login-container">
+  <div id="a-login-card">
+    <div id="a-login-left">
+      {% load static %}
+      <img src="{% static 'images/logo/votaciones.svg' %}" />
+      <br />
+      <h4>Iniciar sesión</h4>
+      <form method="post">
+        {% csrf_token %} {{form.as_p}}
+        <br />
+        <button class="a-main-btn" type="submit">Acceder</button>
+        <br />
+      </form>
+    </div>
+    <div id="a-login-right">
+      {% load static %}
+      <img src="{% static 'images/auth/login.png' %}" alt="" />
+    </div>
+  </div>
+  {% load static %}
+  <img src="{% static 'images/logo/villavo-white.svg' %}" alt="" height="50" />
+</div>
 
-<form method="post">
-  {% csrf_token %} {{form.as_p}}
-  <button class="a-main-btn" type="submit">Acceder</button>
-</form>
 {% endblock content %}
