@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="322" height="203.724" viewBox="0 0 322 203.724">
+    <defs>
+        <style>
+            .cls-1{fill:#2b5ac4}.cls-2{fill:#00d784}
+        </style>
+    </defs>
+    <g id="Grupo_562" transform="translate(-503 -197.276)">
+        <g id="archivo" transform="translate(626 197.276)">
+            <path id="Trazado_356" d="M75.848 34.337L61.207 19.716a1.616 1.616 0 0 0-1.143-.473h-3.5l4.162-4.162a1.616 1.616 0 0 0 0-2.287L48.405.474a1.617 1.617 0 0 0-2.287 0L41 5.59 27.332 19.26a1.6 1.6 0 0 0-.221-.017H16.229a1.615 1.615 0 0 0-1.144.474L.473 34.337A1.612 1.612 0 0 0 0 35.481v45.692a1.617 1.617 0 0 0 1.617 1.617h73.088a1.617 1.617 0 0 0 1.617-1.617V64.8a1.617 1.617 0 0 0-3.234 0v14.756H3.234V37.1h69.854v14.759a1.617 1.617 0 1 0 3.234 0V35.481a1.616 1.616 0 0 0-.474-1.145zM43.289 7.877L47.262 3.9l10.033 10.037-12.616 12.616H31.364l-3.376-3.375zM5.518 33.864L16.9 22.476h7.347a1.616 1.616 0 0 0 .312 1.844l2.233 2.232h-5.1a1.617 1.617 0 1 0 0 3.234h32.937a1.617 1.617 0 1 0 0-3.234h-5.377l4.077-4.077H59.4l11.4 11.389zm0 0" class="cls-1" transform="translate(0 0)"/>
+            <path id="Trazado_357" d="M148 286.94a14.229 14.229 0 1 0 14.229-14.229A14.246 14.246 0 0 0 148 286.94zm25.225 0a11 11 0 1 1-11-11 11.008 11.008 0 0 1 11 11zm0 0" class="cls-2" transform="translate(-124.069 -228.614)"/>
+            <path id="Trazado_358" d="M197.748 331.354a1.617 1.617 0 1 0-2.287 2.286l3.548 3.547a1.616 1.616 0 0 0 2.287 0l6.482-6.482a1.617 1.617 0 1 0-2.287-2.287l-5.339 5.339zm0 0" class="cls-2" transform="translate(-163.459 -274.916)"/>
+            <path id="Trazado_359" d="M453.621 350.707a1.618 1.618 0 1 0 1.143.474 1.627 1.627 0 0 0-1.143-.474zm0 0" class="cls-1" transform="translate(-378.916 -293.998)"/>
+        </g>
+        <text id="Votaciones" fill="#00b7ff" font-family="QuicksandBold-Regular, Quicksand" font-size="63px" letter-spacing="-0.04em" transform="translate(664 333)">
+            <tspan x="-160.839" y="0">Votaciones</tspan>
+        </text>
+        <text id="contigo" fill="#00d784" font-family="Photoshoot-Regular, Photoshoot" font-size="43px" letter-spacing="-0.04em" transform="translate(664 371)">
+            <tspan x="-85.441" y="0">contigo</tspan>
+        </text>
+    </g>
+</svg>
