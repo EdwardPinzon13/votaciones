@@ -1,0 +1,31 @@
+.a-main-btn {
+  background-image: linear-gradient(
+    to right,
+    var(--color-2) 0%,
+    var(--color-3) 51%,
+    var(--color-2) 100%
+  );
+  margin: 10px 0;
+  padding: 15px 45px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+  min-height: 48px;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 16px;
+  font-weight: 600;
+}
+.a-main-btn:hover {
+  background-position: right center;
+  color: #fff;
+  cursor: pointer;
+}
+.a-main-btn:disabled {
+  cursor: not-allowed;
+}
