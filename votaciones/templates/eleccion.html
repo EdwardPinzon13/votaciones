@@ -1,23 +1,15 @@
 {% extends "base.html" %} {% block content %}
 
 <div id="a-eleccion-container">
-  {% load static %}
-  <img src="{% static 'images/main.png' %}" alt="" id="a-background-img" />
-  <div id="a-eleccion-content">
-    <nav class="navbar navbar-dark">
-      <div class="container-fluid">
-        {% load static %}
-        <img
-          src="{% static 'images/logo/villavo-white.svg' %}"
-          alt=""
-          height="50"
-        />
-        <form class="d-flex">
-          <a
-            href="{% url 'users_app:login-user' %}"
-            class="a-secondary-btn"
-            type="button"
-          >
+    {% load static %}
+    <img src="{% static 'images/main.png' %}" alt="" id="a-background-img" />
+    <div id="a-eleccion-content">
+        <nav class="navbar navbar-dark">
+            <div class="container-fluid">
+                {% load static %}
+                <img src="{% static 'images/logo/villavo-white.svg' %}" alt="" height="50" />
+                <form class="d-flex">
+                    <a href="{% url 'users_app:login-user' %}" class="a-secondary-btn" type="button">
             Iniciar sesión</a
           >
         </form>

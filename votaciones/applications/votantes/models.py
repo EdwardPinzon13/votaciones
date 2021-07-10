@@ -11,8 +11,9 @@ class Votantes(models.Model):
     apellido  = models.CharField(max_length=50)
     cargo  = models.CharField(max_length=50)
     dependencia  = models.CharField(max_length=50)
-    email = models.EmailField()
-    votante = models.BooleanField(default=False)
+    email = models.EmailField(blank=True)
+    estado_voto = models.BooleanField(default=False)
+    
     class Meta:
         verbose_name = "Votante"
         verbose_name_plural = "Votantes"

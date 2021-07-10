@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %} Elección de Candidato {% endblock title %} {% block content %} {% load static %} {% if mensaje %}
 <h1>El usuario no cuenta con las credenciales necesarias, por favor redirigirse a la pagina de verificación de cedula</h1>
 {% else %}
-<form method="post">{% csrf_token %}
+<form method="post" name="eleccion">{% csrf_token %}
     <div>
         <center>
             <h1>Elección de Representantes a los trabajadores Alcaldia 2021</h1>
@@ -13,24 +13,44 @@
             <div class="container">
                 <div class="row">
                     {% for c in candidatos %}
-                    <div class="col-4 mb-4 mt-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{c.foto.url}}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{c.nombre}} {{c.apellido}}</h5>
-                                <p class="card-text">Cargo : {{c.cargo}}</p>
-                                <p class="card-text">Dependencia : {{c.dependencia}}</p>
-                                #Tarjeton
-                                <input type="text" id="candi" name="candi" value={{c.id}} readonly="readonly">
-                                </input>
-                                <button type="submit">Elegir</button>
+                    <div class="col-4 mb-4 mt-4 ml-4 mr-4">
+                        <div class="card" style="width: 25rem;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{c.foto.url}}" class="img-fluid rounded-start" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{c.nombre}} {{c.apellido}}</h5>
+                                        <p class="card-text">Tarjetón #{{c.id}}</p>
+                                        <p class="card-text">Cargo : {{c.cargo}}</p>
+                                        <p class="card-text">Dependencia : {{c.dependencia}}</p>
+                                        <div class="input-group ">
+                                            <div class="input-group-text">
+                                                Seleccionar ->
+                                                <input class="form-check-input mt-0" name="candidato" type="radio" value="{{c.id}}" onclick="valueRadio();">
+                                            </div>
+                                        </div>
+                                        <!--<button type=" submit ">Elegir</button>-->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
+                <button type="submit ">Votar</button>
             </div>
         </div>
     </div>
+    <input type="hidden" id="candi " name="candi " value=" ">
+    <script>
+        function valueRadio() {
+            var radiovalue = document.eleccion.candidato.value;
+            document.eleccion.candi.value = radiovalue
+            console.log(radiovalue);
+        }
+    </script>
+    </input>
 </form>
 {% endif %} {% endblock content %}
