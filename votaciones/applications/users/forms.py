@@ -6,14 +6,14 @@ class LoginForm(forms.Form):
         label='Username',
         required=True,
         widget=forms.TextInput(attrs={
-            'placeholder' :'username',
+            'placeholder' :'Usuario',
             'style':{'margin:10px'}
         }))
     password=forms.CharField(
         label='Password',
         required=True,
         widget=forms.PasswordInput(attrs={
-            'placeholder':'contrasena'
+            'placeholder':'Contraseña'
         })
     )
     def clean(self):
