@@ -1,6 +1,50 @@
-{% extends "base.html" %} {% block title %} verificación de cedula {% endblock title %} {% block content %}
-<form method="post">
-    {% csrf_token %} {{form.as_p}}
-    <button type="submit">Verificar</button>
-</form>
+{% extends "base.html" %} {% block content %}
+
+<div id="a-eleccion-container">
+  {% load static %}
+  <img src="{% static 'images/main.png' %}" alt="" id="a-background-img" />
+  <div id="a-eleccion-content">
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        {% load static %}
+        <img
+          src="{% static 'images/logo/villavo-white.svg' %}"
+          alt=""
+          height="50"
+        />
+        <form class="d-flex">
+          <a
+            href="{% url 'users_app:login-user' %}"
+            class="a-secondary-btn"
+            type="button"
+          >
+            Iniciar sesión</a
+          >
+        </form>
+      </div>
+    </nav>
+    <div id="a-row">
+      <div id="a-left-column">
+        {% load static %}
+        <img src="{% static 'images/figure-main.svg' %}" />
+      </div>
+      <div id="a-right-column">
+        <h5>Ingresa tu número de identificación</h5>
+        <form method="post">
+          {% csrf_token %} {{form.as_p}}
+          <button class="a-main-btn" type="submit">Siguiente</button>
+        </form>
+      </div>
+    </div>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span>
+          Desarrollado por la Dirección de Sistemas Tecnológicas e Informáticos
+          Secretaria de las TIC - Villavicencio Cambia Contigo
+        </span>
+      </div>
+    </nav>
+  </div>
+</div>
+
 {% endblock content %}
