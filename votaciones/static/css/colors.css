@@ -18,3 +18,8 @@ body,
   overflow-x: hidden;
   position: relative;
 }
+
+.navbar {
+  background-color: transparent;
+  padding: 20px 10px !important;
+}

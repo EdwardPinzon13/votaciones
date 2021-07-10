@@ -29,3 +29,13 @@
 .a-main-btn:disabled {
   cursor: not-allowed;
 }
+
+.a-secondary-btn {
+  border: none;
+  color: white;
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: var(--color-2);
+  text-decoration: none !important;
+}
