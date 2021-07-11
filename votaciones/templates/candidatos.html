@@ -1,36 +1,59 @@
 {% extends "base.html" %} {% block title %} Elección de Candidato {% endblock title %} {% block content %} {% load static %} {% if mensaje %}
 <h1>El usuario no cuenta con las credenciales necesarias, por favor redirigirse a la pagina de verificación de cedula</h1>
 {% else %}
-<form method="post">{% csrf_token %}
-    <div>
-        <center>
-            <h1>Elección de Representantes a los trabajadores Alcaldia 2021</h1>
-        </center>
-        <input type="hidden" id="cc" name="cc" value={{user.cedula}} readonly="readonly"></input>
-    </div>
-    <div>
-        <div class="container-fluid">
-            <div class="container">
-                <div class="row">
+
+
+<input type="hidden" id="cc" name="cc" value={{user.cedula}} readonly="readonly"></input>
+
+<div id="a-candidates-container">
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        {% load static %}
+        <img
+          src="{% static 'images/logo/villavo-white.svg' %}"
+          alt=""
+          height="30"
+        />
+      </div>
+    </nav>
+    <div id="a-candidates-content">
+        <div id="a-election-title">
+            <h6>Elección de Representantes a los trabajadores Alcaldía 2021</h6>
+        </div>
+        <div id="a-form-container">
+            <form method="post">{% csrf_token %}
+                <div id="a-candidates-main-container">
                     {% for c in candidatos %}
-                    <div class="col-4 mb-4 mt-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{c.foto.url}}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{c.nombre}} {{c.apellido}}</h5>
-                                <p class="card-text">Cargo : {{c.cargo}}</p>
-                                <p class="card-text">Dependencia : {{c.dependencia}}</p>
-                                #Tarjeton
-                                <input type="text" id="candi" name="candi" value={{c.id}} readonly="readonly">
-                                </input>
-                                <button type="submit">Elegir</button>
+                    <div class="a-candidate-info">
+                        <div class="a-candidate-img">
+                            <img src="{{c.foto.url}}" class="card-img-top"  alt="...">
+                            <button type="submit" class="a-main-btn">Votar</button>
+                        </div>
+                        <div class="a-candidate-desc">
+                            <div class="a-candidate-id">Candidato {{c.id}} </div>
+                            <br/>
+                            <div class="a-candidate-name">{{c.nombre}} </div>
+                            <div class="a-candidate-name">{{c.apellido}} </div>
+                            <br/>
+                            <div class="a-candidate-other">
+                                <span class="a-square-title">Cargo</span> {{c.cargo}}
+                            </div>
+                            <br/>
+                            <div class="a-candidate-other">
+                                <span class="a-square-title">Dependencia</span> 
+                                <div>
+                                    {{c.dependencia}}
+                                </div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
-                </div>
-            </div>
+                </div>         
+            </form>
         </div>
+        
     </div>
-</form>
+    
+</div>
+
 {% endif %} {% endblock content %}
