@@ -30,10 +30,13 @@ class VerificarVotante(FormView):
             return  HttpResponseRedirect(reverse('votante_app:error-votante'))
         return super().post(request,*args,**kwargs)
 
+    def form_valid(self, VerificarVotanteForm):
+        return super().form_valid(VerificarVotanteForm)
+
 class ErrorVotante(TemplateView):
     template_name='error.html'
 
-class ErrorVotante(TemplateView):
+class agradecimientoVotante(TemplateView):
     template_name='gracias.html'
 
 
