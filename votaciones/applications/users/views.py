@@ -42,4 +42,4 @@ class LoginUser(FormView):
 class  LogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
-        return HttpResponseRedirect(reverse('users_app:login'))
+        return HttpResponseRedirect(reverse('users_app:login-user'))

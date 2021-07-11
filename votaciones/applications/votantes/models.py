@@ -13,7 +13,7 @@ class Votantes(models.Model):
     dependencia  = models.CharField(max_length=50)
     email = models.EmailField(blank=True)
     estado_voto = models.BooleanField(default=False)
-    
+
     class Meta:
         verbose_name = "Votante"
         verbose_name_plural = "Votantes"
