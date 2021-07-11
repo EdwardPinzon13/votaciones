@@ -21,7 +21,8 @@
   font-size: 16px;
   font-weight: 600;
 }
-.a-main-btn:hover {
+.a-main-btn:hover,
+.a-icon-btn:hover {
   background-position: right center;
   color: #fff;
   cursor: pointer;
@@ -39,3 +40,35 @@
   background-color: var(--color-2);
   text-decoration: none !important;
 }
+
+.a-icon-text-btn {
+  color: white !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.a-icon-btn {
+  width: 36px;
+  height: 36px;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to left, #00d78c 100%, #00bced 0%);
+
+  background-image: linear-gradient(
+    to right,
+    var(--color-2) 0%,
+    var(--color-3) 51%,
+    var(--color-2) 100%
+  );
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  border: none;
+}
+
