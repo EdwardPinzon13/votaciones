@@ -2,40 +2,40 @@
 <h1>El usuario no cuenta con las credenciales necesarias, por favor redirigirse a la pagina de verificación de cedula</h1>
 {% else %}
 
-<div id="a-candidates-container ">
-    <nav class="navbar navbar-dark ">
-        <div class="container-fluid ">
+<div id="a-candidates-container">
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
             {% load static %}
-            <img src="{% static 'images/logo/villavo-white.svg' %} " alt=" " height="30 " />
+            <img src="{% static 'images/logo/villavo-white.svg' %}" alt=" " height="30" />
         </div>
     </nav>
-    <div id="a-candidates-content ">
-        <div id="a-election-title ">
+    <div id="a-candidates-content">
+        <div id="a-election-title">
             <h6>Elección de Representantes a los trabajadores Alcaldía 2021</h6>
         </div>
-        <div id="a-form-container ">
+        <div id="a-form-container">
             <form method="post" name="eleccion">
                 {% csrf_token %}
-                <input type="hidden" id="cc" name="cc" value="{{user.cedula}}" readonly="readonly "></input>
-                <div id="a-candidates-main-container ">
+                <input type="hidden" id="cc" name="cc" value="{{user.cedula}}" readonly="readonly"></input>
+                <div id="a-candidates-main-container">
                     {% for c in candidatos %}
-                    <div class="a-candidate-info ">
-                        <div class="a-candidate-img ">
-                            <img src="{{c.foto.url}} " class="card-img-top " alt="... ">
-                            <button type="submit " class="a-main-btn " onclick="valueRadio('{{c.id}}')">Votar</button>
+                    <div class="a-candidate-info">
+                        <div class="a-candidate-img">
+                            <img src="{{c.foto.url}}" class="card-img-top" alt="... ">
+                            <button type="submit " class="a-main-btn" onclick="valueRadio('{{c.id}}')">Votar</button>
                         </div>
-                        <div class="a-candidate-desc ">
-                            <div class="a-candidate-id ">Candidato {{c.id}} </div>
+                        <div class="a-candidate-desc">
+                            <div class="a-candidate-id">Candidato {{c.id}} </div>
                             <br/>
-                            <div class="a-candidate-name ">{{c.nombre}} </div>
-                            <div class="a-candidate-name ">{{c.apellido}} </div>
+                            <div class="a-candidate-name">{{c.nombre}} </div>
+                            <div class="a-candidate-name">{{c.apellido}} </div>
                             <br/>
-                            <div class="a-candidate-other ">
-                                <span class="a-square-title ">Cargo</span> {{c.cargo}}
+                            <div class="a-candidate-other">
+                                <span class="a-square-title">Cargo</span> {{c.cargo}}
                             </div>
                             <br/>
-                            <div class="a-candidate-other ">
-                                <span class="a-square-title ">Dependencia</span>
+                            <div class="a-candidate-other">
+                                <span class="a-square-title">Dependencia</span>
                                 <div>
                                     {{c.dependencia}}
                                 </div>
