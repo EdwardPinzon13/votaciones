@@ -20,3 +20,9 @@
 </style>
 
 {% endblock content %}
+
+<script>
+  setTimeout(() => {
+    window.location.replace("{% url 'votante_app:verificacion-votante' %}");
+  }, 5000);
+</script>
