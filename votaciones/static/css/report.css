@@ -1,0 +1,73 @@
+#a-report-container {
+  width: 100%;
+  height: 100%;
+}
+#a-report-container .navbar {
+  background-color: var(--color-1);
+}
+#a-charts-container {
+  width: 100%;
+  height: calc(100% - 140px);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2%;
+}
+
+.a-chart-figure {
+  height: 100%;
+  width: 45%;
+  background-color: var(--color-4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  border-radius: 20px;
+  margin: 2%;
+}
+
+.a-chart-figure figure {
+  width: 100%;
+}
+.highcharts-title {
+  font-family: Quicksand;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  color: #00b7ff;
+}
+.highcharts-title tspan {
+  color: #00b7ff;
+  font-size: 25px;
+  fill: #00b7ff;
+}
+
+.a-footer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.15px;
+  text-align: center;
+}
+
+tspan {
+  font-family: Quicksand;
+}
+@media (max-width: 800px) {
+  #a-charts-container {
+    flex-flow: column nowrap;
+    height: 100%;
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+  .a-chart-figure {
+    width: 100%;
+    min-height: fit-content;
+    height: 100%;
+  }
+}
