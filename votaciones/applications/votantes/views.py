@@ -74,7 +74,7 @@ class EleccionCandidato(ListView):
     def post(self,request,*args,**kwargs):
         elector = request.POST['cc']
         elector = Votantes.objects.get(cedula=elector)
-        elector.votante=True
+        elector.estado_voto=True
         elector.save()
         candidato_seleccionado = request.POST['candi']
         print('candi 1', candidato_seleccionado)

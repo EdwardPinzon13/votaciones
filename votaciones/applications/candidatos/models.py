@@ -3,10 +3,10 @@ from applications.votantes.models import Votantes
 # Create your models here.
 
 class Candidato(models.Model):
-    nombre  = models.CharField(max_length=50)
-    apellido  = models.CharField(max_length=50)
-    cargo  = models.CharField(max_length=50)
-    dependencia = models.CharField(max_length=50)
+    nombre  = models.CharField(max_length=100)
+    apellido  = models.CharField(max_length=100)
+    cargo  = models.CharField(max_length=100)
+    dependencia = models.CharField(max_length=100)
     foto = models.ImageField(("Foto Candidato"), upload_to='candidatos')
 
     class Meta:
