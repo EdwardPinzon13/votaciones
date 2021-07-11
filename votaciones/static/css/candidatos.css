@@ -1,0 +1,157 @@
+#a-candidates-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+#a-candidates-container .navbar {
+  background: var(--color-1);
+}
+
+#a-candidates-content {
+  background: var(--color-4);
+  height: calc(100% - 120px);
+  width: 90%;
+  margin: 5%;
+  border-radius: 23px;
+
+  position: relative;
+}
+
+#a-election-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 60px;
+  margin: 0 0 24px;
+  border-radius: 18px;
+  background-color: #00d784;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2%;
+}
+
+#a-election-title h6 {
+  color: white;
+  margin: 0;
+  font-family: Quicksand; /* TODO */
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+
+#a-form-container {
+  margin: 70px 0 20px 0;
+  height: calc(100% - 80px);
+  overflow-y: scroll;
+}
+
+#a-candidates-main-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+}
+
+.a-candidate-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  min-width: 500px;
+}
+
+.a-candidate-info .a-candidate-img img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.a-candidate-info .a-candidate-img {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.a-candidate-info .a-candidate-img .a-main-btn {
+  height: 45px;
+  padding: 0 30px;
+  margin-top: -20px;
+  width: fit-content;
+}
+
+.a-candidate-info .a-candidate-desc {
+  width: calc(100% - 200px);
+  padding: 10px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.a-candidate-info .a-candidate-id {
+  font-family: Photoshoot; /* TODO */
+  font-size: 16px;
+  letter-spacing: -0.2px;
+  color: var(--color-2);
+}
+
+.a-candidate-info .a-candidate-name {
+  font-family: Montserrat; /* TODO */
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -0.25px;
+  color: var(--text-color);
+}
+
+.a-candidate-info .a-candidate-other {
+  font-family: Montserrat; /* TODO */
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.18px;
+  color: var(--text-color);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.a-square-title {
+  height: 40px;
+  width: fit-content;
+  min-width: fit-content;
+  overflow-y: scroll;
+  margin-right: 10px;
+  padding: 9px 13px;
+  border-radius: 9px;
+  border: solid 1.5px var(--color-2);
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+@media (max-width: 600px) {
+  #a-election-title h6 {
+    font-size: 16px;
+  }
+  .a-candidate-info {
+    border-bottom: 1px solid #33333325;
+    flex-flow: column;
+    min-width: fit-content !important;
+    margin: 6%;
+    margin-bottom: 20px !important;
+  }
+  #a-candidates-main-container {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
+  }
+  .a-candidate-info .a-candidate-desc {
+    width: 80%;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+}
