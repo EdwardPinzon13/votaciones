@@ -25,6 +25,7 @@ class VerificarVotante(FormView):
 
     def post(self,request,*args, **kwargs):
         cedula_user =request.POST['cedula']
+        email_user = request.POST['email']
         try:
             user = Votantes.objects.get(cedula=cedula_user)
             if user:
@@ -32,7 +33,11 @@ class VerificarVotante(FormView):
                     message = 'El usuario registrado con la cedula #'+ '   ' + user.cedula+ '  '+' ya ha realizado la votación'
                     return render(request,'error.html', {'message_error': message})
                 else:
-                    return HttpResponseRedirect(reverse('votante_app:eleccion-votante',kwargs={'cc':user.cedula}))
+                    if user.email==email_user:
+                        return HttpResponseRedirect(reverse('votante_app:eleccion-votante',kwargs={'cc':user.cedula}))
+                    else:
+                        message = 'Lo sentimos usted no brindo las credenciales correctas, verificar cédula y correo electrónico.'
+                        return render(request,'error.html', {'message_error': message})
         except ObjectDoesNotExist:
                     return render(
                         request,
