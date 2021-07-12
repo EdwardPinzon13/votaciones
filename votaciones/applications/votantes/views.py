@@ -1,5 +1,6 @@
 from django.db import IntegrityError
 from django.urls.base import reverse_lazy
+from django.shortcuts import render
 from django.views.generic.edit import  FormView
 from django.views.generic import ListView,TemplateView
 from django.http import HttpResponseRedirect
@@ -25,9 +26,17 @@ class VerificarVotante(FormView):
         try:
             user = Votantes.objects.get(cedula=cedula_user)
             if user:
-                return HttpResponseRedirect(reverse('votante_app:eleccion-votante',kwargs={'cc':user.cedula}))
+                if user.estado_voto==True:
+                    message = 'El usuario registrado con la cedula #'+ '   ' + user.cedula+ '  '+' ya ha realizado la votación'
+                    return render(request,'error.html', {'message_error': message})
+                else:
+                    return HttpResponseRedirect(reverse('votante_app:eleccion-votante',kwargs={'cc':user.cedula}))
         except ObjectDoesNotExist:
-            return  HttpResponseRedirect(reverse('votante_app:error-votante'))
+                    return render(
+                        request,
+                        'error.html',
+                        {'message_error': 'Lo sentimos el numero de cedula  no se encuntra registrado, comunicarse con correo@gmail.com para más información'}
+                        )
         return super().post(request,*args,**kwargs)
 
     def form_valid(self, VerificarVotanteForm):
