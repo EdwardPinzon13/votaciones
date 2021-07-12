@@ -1,15 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Error</title>
-</head>
 
-<body>
-    {{message_error}}
-</body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/colors.css' %}" />
 
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+      }
+      #a-error-container {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-1);
+        flex-flow: column nowrap;
+      }
+      #a-white-container {
+        background-color: white;
+        border-radius: 20px;
+        color: var(--text-color);
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px;
+        padding: 40px;
+      }
+      h3 {
+        color: var(--color-2);
+        font-family: Quicksand;
+        font-size: 22px;
+        font-weight: 900;
+        margin: 0 0 10px 0;
+      }
+      .a-main-btn {
+        width: 120px;
+        height: 30px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="a-error-container">
+      <div id="a-white-container">
+        <h3>Ha ocurrido un error</h3>
+        <br />
+        <span> {{message_error}} </span>
+        <span>Comunícate con nosotros o inténtalo de nuevo.</span>
+        <br />
+        <a
+          href="{% url 'votante_app:verificacion-votante' %}"
+          class="a-main-btn"
+          type="button"
+        >
+          Continuar
+        </a>
+      </div>
+      <br />
+      {% load static %}
+      <img
+        src="{% static 'images/logo/villavo-white.svg' %}"
+        alt=""
+        height="50"
+      />
+    </div>
+  </body>
 </html>
