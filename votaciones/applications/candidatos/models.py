@@ -1,5 +1,6 @@
 from django.db import models
 from applications.votantes.models import Votantes
+from model_utils.models import TimeStampedModel
 # Create your models here.
 
 class Candidato(models.Model):
@@ -16,7 +17,7 @@ class Candidato(models.Model):
     def __str__(self):
         return self.nombre + ' ' + self.apellido + ' ' + self.cargo
 
-class eleccion(models.Model):
+class eleccion(TimeStampedModel):
     candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE)
     votante = models.ForeignKey(Votantes,on_delete=models.CASCADE,unique=True)
 

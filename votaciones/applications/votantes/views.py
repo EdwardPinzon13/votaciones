@@ -1,3 +1,5 @@
+import datetime
+import numpy as np
 from django.db import IntegrityError
 from django.urls.base import reverse_lazy
 from django.shortcuts import render
@@ -105,30 +107,120 @@ class EleccionCandidato(ListView):
 
 class reporteVotacion(LoginRequiredMixin,TemplateView):
     template_name='jurados/reporte.html'
-    login_url = reverse_lazy('users_app:login')
+    login_url = reverse_lazy('users_app:login-user')
     def  get_votos_candidato(self):
         total_votos = eleccion.objects.values(
             'candidato_id'
         ).annotate(data=Count('candidato_id'))
         return total_votos
 
+    def get_votos_candidate_for_hour(self):
+        fec='2021-07-11'
+        fecha = datetime.datetime.strptime(fec,"%Y-%m-%d").date()
+        cantVotosHora=[]
+        ArrayVotosCandidato1=[]
+        ArrayVotosCandidato2=[]
+        ArrayVotosCandidato3=[]
+        ArrayVotosCandidato4=[]
+        ArrayVotosCandidato5=[]
+        print('---',cantVotosHora)
+        array = np.empty((0, 3), int)
+        array = np.append(array, np.array([[31, 32, 33], [41, 42, 43]]), axis=0)
+        print(array)
+        for i in range(24):
+            print(i)
+            hora1=str(i)+':00:00'
+            hora2=str(i)+':59:59'
+            votosHora= eleccion.objects.values('candidato_id').filter(
+                created__time__range=(hora1,hora2),
+                created__date=fecha).annotate(
+                    data=Count('candidato_id'
+                            )
+                    )
+            if votosHora.exists():
+                for j in range(len(votosHora)):
+                        if votosHora[j]['candidato_id']==1:
+                            ArrayVotosCandidato1.append(votosHora[j]['data'])
+                        if votosHora[j]['candidato_id']!=1:
+                            ArrayVotosCandidato1.append(0)
 
+                        if votosHora[j]['candidato_id']==2:
+                           ArrayVotosCandidato2.append(votosHora[j]['data'])
+                        if votosHora[j]['candidato_id']!=2:
+                            ArrayVotosCandidato2.append(0)
+
+                        if votosHora[j]['candidato_id']==3:
+                           ArrayVotosCandidato3.append(votosHora[j]['data'])
+                        if votosHora[j]['candidato_id']!=3:
+                            ArrayVotosCandidato3.append(0)
+
+                        if votosHora[j]['candidato_id']==4:
+                           ArrayVotosCandidato4.append(votosHora[j]['data'])
+                        if votosHora[j]['candidato_id']!=4:
+                            ArrayVotosCandidato4.append(0)
+
+                        if votosHora[j]['candidato_id']==5:
+                           ArrayVotosCandidato5.append(votosHora[j]['data'])
+                        if votosHora[j]['candidato_id']!=5:
+                            ArrayVotosCandidato5.append(0)
+            else:
+                ArrayVotosCandidato1.append(0)
+                ArrayVotosCandidato2.append(0)
+                ArrayVotosCandidato3.append(0)
+                ArrayVotosCandidato4.append(0)
+                ArrayVotosCandidato5.append(0)
+        print('lista 1 ', ArrayVotosCandidato1)
+        print('lista 2 ', ArrayVotosCandidato2)
+        print('lista 3 ', ArrayVotosCandidato3)
+        print('lista 4 ', ArrayVotosCandidato4)
+        print('lista 5 ', ArrayVotosCandidato5)
+        ListasVotosPorCandidato = [ArrayVotosCandidato1,ArrayVotosCandidato2,ArrayVotosCandidato3,ArrayVotosCandidato4,ArrayVotosCandidato5]
+        return ListasVotosPorCandidato
+    
     def get_context_data(self, **kwargs):
         total_parcial = eleccion.objects.all().count()
         context = super().get_context_data(**kwargs)
         context ['panel'] = 'Panel de Administrador'
         lista_votos=[]
         porcentaje_votosPie=[]
+        serieVotoshora=[]
+        votosHoraCandidato1=[]
+        votosHoraCandidato2=[]
+        votosHoraCandidato3=[]
+        votosHoraCandidato4=[]
+        votosHoraCandidato5=[]
+        listasVotosHora = self.get_votos_candidate_for_hour()
         total_votos = self.get_votos_candidato()
+        for j in range(25):
+            h=j
+            if j==24:
+                h=-1
+            votosHoraCandidato1.append([str(j)+' - '+str(h+1),listasVotosHora[0][j]])
+            votosHoraCandidato2.append([str(j)+' - '+str(h+1),listasVotosHora[1][j]])
+            votosHoraCandidato3.append([str(j)+' - '+str(h+1),listasVotosHora[2][j]])
+            votosHoraCandidato4.append([str(j)+' - '+str(h+1),listasVotosHora[3][j]])
+            votosHoraCandidato5.append([str(j)+' - '+str(h+1),listasVotosHora[4][j]])
+        ArrayVotosHoraCandidato=[votosHoraCandidato1,votosHoraCandidato2,votosHoraCandidato3,votosHoraCandidato4,votosHoraCandidato5]
         for i in range(len(total_votos)):
+            print('prueva votos',total_votos[i])
             nombre = total_votos[i]['candidato_id']=Candidato.objects.get(id=total_votos[i]['candidato_id']).nombre
             total_votos[i]['name']=total_votos[i].pop('candidato_id')
+            total_votos[i]['y']=total_votos[i]['data']
             total_votos[i]['data']=[total_votos[i]['data']]
-            total_votos[i]['y']=((total_votos[i]['data'][0]*100)/total_parcial)
+            total_votos[i]['drilldown']=total_votos[i]['name']
             porcentaje_votosPie.append([
                 nombre,(total_votos[i]['data'][0]*100/total_parcial)
                 ])
             lista_votos.append(total_votos[i])
+            serieVotoshora.append({
+                'name':total_votos[i]['name'],
+                'id':total_votos[i]['name'],
+                'data':ArrayVotosHoraCandidato[i]
+            })
+        print('viejaseria',lista_votos)
+        print('nueva serie',serieVotoshora)
         context ['graph_votos_candidato'] =lista_votos
         context ['pie_votos_candidato'] =porcentaje_votosPie
+        context ['graph_votos_hora_candidato'] =serieVotoshora
+
         return context
