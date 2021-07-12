@@ -120,28 +120,29 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         return total_votos
 
     def get_votos_candidate_for_hour(self):
-        fec='2021-07-11'
-        fecha = datetime.datetime.strptime(fec,"%Y-%m-%d").date()
+        #fec='2021-07-11'
+        #fecha = datetime.datetime.strptime(fec,"%Y-%m-%d").date()
         cantVotosHora=[]
         ArrayVotosCandidato1=[]
         ArrayVotosCandidato2=[]
         ArrayVotosCandidato3=[]
         ArrayVotosCandidato4=[]
         ArrayVotosCandidato5=[]
-        print('---',cantVotosHora)
-        array = np.empty((0, 3), int)
-        array = np.append(array, np.array([[31, 32, 33], [41, 42, 43]]), axis=0)
-        print(array)
         for i in range(24):
             print(i)
             hora1=str(i)+':00:00'
             hora2=str(i)+':59:59'
-            votosHora= eleccion.objects.values('candidato_id').filter(
+            """votosHora= eleccion.objects.values('candidato_id').filter(
                 created__time__range=(hora1,hora2),
                 created__date=fecha).annotate(
                     data=Count('candidato_id'
                             )
-                    )
+                    )"""
+            votosHora= eleccion.objects.values('candidato_id').filter(
+            created__time__range=(hora1,hora2)).annotate(
+                data=Count('candidato_id'
+                        )
+                )
             if votosHora.exists():
                 for j in range(len(votosHora)):
                         if votosHora[j]['candidato_id']==1:
@@ -181,7 +182,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         print('lista 5 ', ArrayVotosCandidato5)
         ListasVotosPorCandidato = [ArrayVotosCandidato1,ArrayVotosCandidato2,ArrayVotosCandidato3,ArrayVotosCandidato4,ArrayVotosCandidato5]
         return ListasVotosPorCandidato
-    
+
     def get_context_data(self, **kwargs):
         total_parcial = eleccion.objects.all().count()
         context = super().get_context_data(**kwargs)
@@ -196,7 +197,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         votosHoraCandidato5=[]
         listasVotosHora = self.get_votos_candidate_for_hour()
         total_votos = self.get_votos_candidato()
-        for j in range(25):
+        for j in range(24):
             h=j
             if j==24:
                 h=-1
@@ -229,3 +230,13 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         context ['graph_votos_hora_candidato'] =serieVotoshora
 
         return context
+class TablaVotantesView(LoginRequiredMixin,TemplateView):
+    template_name = "jurados/votantes.html"
+    login_url = reverse_lazy('users_app:login-user')
+    queryset = eleccion.objects.filter(votante__estado_voto=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["datos"] = self.queryset
+        return context
+

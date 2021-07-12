@@ -5,9 +5,9 @@ from model_utils.models import TimeStampedModel
 
 class Candidato(models.Model):
     nombre  = models.CharField(max_length=100)
-    apellido  = models.CharField(max_length=100)
-    cargo  = models.CharField(max_length=100)
-    dependencia = models.CharField(max_length=100)
+    apellido  = models.CharField(max_length=100, null=True)
+    cargo  = models.CharField(max_length=100,null=True)
+    dependencia = models.CharField(max_length=100,null=True)
     foto = models.ImageField(("Foto Candidato"), upload_to='candidatos')
 
     class Meta:
@@ -15,7 +15,7 @@ class Candidato(models.Model):
         verbose_name_plural = "Candidatos"
 
     def __str__(self):
-        return self.nombre + ' ' + self.apellido + ' ' + self.cargo
+        return self.nombre + ' - ' + self.apellido + ' - ' + self.cargo + ' - ' + self.dependencia
 
 class eleccion(TimeStampedModel):
     candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE)
@@ -27,4 +27,4 @@ class eleccion(TimeStampedModel):
         unique_together = ['candidato','votante']
 
     def __str__(self):
-        return str(self.candidato.id) + ' ' + self.votante.nombre
+        return self.votante.nombre + ' - ' + str(self.votante.email) + ' - ' + str(self.votante.estado_voto)

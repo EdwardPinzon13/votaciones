@@ -10,5 +10,6 @@ urlpatterns = [
     path('error/', views.ErrorVotante.as_view(), name='error-votante'),
     path('agradecimiento/', views.agradecimientoVotante.as_view(), name='agradecimiento-votante'),
     path('reporte/', views.reporteVotacion.as_view(), name='reporte-votos'),
+    path('tabla/', views.TablaVotantesView.as_view(), name='tabla-votos'),
 
 ]
