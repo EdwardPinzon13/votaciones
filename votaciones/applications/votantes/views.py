@@ -116,7 +116,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
     def  get_votos_candidato(self):
         total_votos = eleccion.objects.values(
             'candidato_id'
-        ).annotate(data=Count('candidato_id'))
+        ).annotate(data=Count('candidato_id')).order_by('candidato_id')
         return total_votos
 
     def get_votos_candidate_for_hour(self):
@@ -129,7 +129,6 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         ArrayVotosCandidato4=[]
         ArrayVotosCandidato5=[]
         for i in range(24):
-            print(i)
             hora1=str(i)+':00:00'
             hora2=str(i)+':59:59'
             """votosHora= eleccion.objects.values('candidato_id').filter(
@@ -223,6 +222,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
                 'id':total_votos[i]['name'],
                 'data':ArrayVotosHoraCandidato[i]
             })
+            print(i)
         print('viejaseria',lista_votos)
         print('nueva serie',serieVotoshora)
         context ['graph_votos_candidato'] =lista_votos
