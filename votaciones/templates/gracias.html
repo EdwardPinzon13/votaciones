@@ -2,6 +2,7 @@
 
 <div id="a-thanks-container">
   {% load static %}
+  <img src="{% static 'images/smile.svg' %}" alt=" " />
   <img src="{% static 'images/thanks.svg' %}" alt=" " />
 </div>
 
@@ -20,3 +21,9 @@
 </style>
 
 {% endblock content %}
+
+<script>
+  setTimeout(() => {
+    window.location.replace("{% url 'votante_app:verificacion-votante' %}");
+  }, 5000);
+</script>

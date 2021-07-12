@@ -37,7 +37,6 @@
 
 #a-eleccion-content #a-row #a-left-column,
 #a-eleccion-content #a-row #a-right-column {
-  width: 50%;
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
@@ -54,7 +53,6 @@
 
 #a-eleccion-content #a-row #a-left-column img {
   width: 100%;
-  object-fit: cover;
-  margin-left: -100%;
+  object-fit: contain;
   height: 50%;
 }
