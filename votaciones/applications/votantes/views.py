@@ -30,7 +30,7 @@ class VerificarVotante(FormView):
             user = Votantes.objects.get(cedula=cedula_user)
             if user:
                 if user.estado_voto==True:
-                    message = 'El usuario registrado con la cedula #'+ '   ' + user.cedula+ '  '+' ya ha realizado la votación'
+                    message = 'El usuario registrado con la cedula #'+ '   ' + user.cedula+ '  '+' ya ha realizado la votación, si no fuiste tú'
                     return render(request,'error.html', {'message_error': message})
                 else:
                     if user.email==email_user:
@@ -42,7 +42,7 @@ class VerificarVotante(FormView):
                     return render(
                         request,
                         'error.html',
-                        {'message_error': 'Lo sentimos el numero de cedula  no se encuntra registrado, comunicarse con correo@gmail.com para más información'}
+                        {'message_error': 'Lo sentimos el numero de cedula  no se encuntra registrado, comunicarse con votacionesContigo@gmail.com para más información'}
                         )
         return super().post(request,*args,**kwargs)
 
@@ -113,6 +113,7 @@ class EleccionCandidato(ListView):
 class reporteVotacion(LoginRequiredMixin,TemplateView):
     template_name='jurados/reporte.html'
     login_url = reverse_lazy('users_app:login-user')
+    
     def  get_votos_candidato(self):
         total_votos = eleccion.objects.values(
             'candidato_id'
@@ -123,12 +124,12 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         #fec='2021-07-11'
         #fecha = datetime.datetime.strptime(fec,"%Y-%m-%d").date()
         cantVotosHora=[]
-        ArrayVotosCandidato1=[]
-        ArrayVotosCandidato2=[]
-        ArrayVotosCandidato3=[]
-        ArrayVotosCandidato4=[]
-        ArrayVotosCandidato5=[]
-        for i in range(24):
+        ArrayVotosCandidato1=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ArrayVotosCandidato2=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ArrayVotosCandidato3=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ArrayVotosCandidato4=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ArrayVotosCandidato5=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        for i in range(23):
             hora1=str(i)+':00:00'
             hora2=str(i)+':59:59'
             """votosHora= eleccion.objects.values('candidato_id').filter(
@@ -139,41 +140,41 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
                     )"""
             votosHora= eleccion.objects.values('candidato_id').filter(
             created__time__range=(hora1,hora2)).annotate(
-                data=Count('candidato_id'
-                        )
+                data=Count('candidato_id')
                 )
             if votosHora.exists():
                 for j in range(len(votosHora)):
-                        if votosHora[j]['candidato_id']==1:
-                            ArrayVotosCandidato1.append(votosHora[j]['data'])
-                        if votosHora[j]['candidato_id']!=1:
-                            ArrayVotosCandidato1.append(0)
+                    if votosHora[j]['candidato_id']==1:
+                        ArrayVotosCandidato1[i]=votosHora[j]['data']
+                    #if votosHora[j]['candidato_id']!=1:
+                     #   ArrayVotosCandidato1.append(0)
 
-                        if votosHora[j]['candidato_id']==2:
-                           ArrayVotosCandidato2.append(votosHora[j]['data'])
-                        if votosHora[j]['candidato_id']!=2:
-                            ArrayVotosCandidato2.append(0)
+                    if votosHora[j]['candidato_id']==2:
+                        ArrayVotosCandidato2[i]=votosHora[j]['data']
+                    #if votosHora[j]['candidato_id']!=2:
+                    #    ArrayVotosCandidato2.append(0)
 
-                        if votosHora[j]['candidato_id']==3:
-                           ArrayVotosCandidato3.append(votosHora[j]['data'])
-                        if votosHora[j]['candidato_id']!=3:
-                            ArrayVotosCandidato3.append(0)
+                    if votosHora[j]['candidato_id']==3:
+                        ArrayVotosCandidato3[i]=votosHora[j]['data']
+                        print('hola RRR')
+                    #if votosHora[j]['candidato_id']!=3:
+                    #    ArrayVotosCandidato3.append(0)
 
-                        if votosHora[j]['candidato_id']==4:
-                           ArrayVotosCandidato4.append(votosHora[j]['data'])
-                        if votosHora[j]['candidato_id']!=4:
-                            ArrayVotosCandidato4.append(0)
+                    if votosHora[j]['candidato_id']==4:
+                        ArrayVotosCandidato4[i]=votosHora[j]['data']
+                    #if votosHora[j]['candidato_id']!=4:
+                    #    ArrayVotosCandidato4.append(0)
 
-                        if votosHora[j]['candidato_id']==5:
-                           ArrayVotosCandidato5.append(votosHora[j]['data'])
-                        if votosHora[j]['candidato_id']!=5:
-                            ArrayVotosCandidato5.append(0)
+                    if votosHora[j]['candidato_id']==5:
+                        ArrayVotosCandidato5[i]=votosHora[j]['data']
+                    #if votosHora[j]['candidato_id']!=5:
+                    #    ArrayVotosCandidato5.append(0)
             else:
-                ArrayVotosCandidato1.append(0)
-                ArrayVotosCandidato2.append(0)
-                ArrayVotosCandidato3.append(0)
-                ArrayVotosCandidato4.append(0)
-                ArrayVotosCandidato5.append(0)
+                ArrayVotosCandidato1[i]=0
+                ArrayVotosCandidato2[i]=0
+                ArrayVotosCandidato3[i]=0
+                ArrayVotosCandidato4[i]=0
+                ArrayVotosCandidato5[i]=0
         print('lista 1 ', ArrayVotosCandidato1)
         print('lista 2 ', ArrayVotosCandidato2)
         print('lista 3 ', ArrayVotosCandidato3)
@@ -208,6 +209,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         ArrayVotosHoraCandidato=[votosHoraCandidato1,votosHoraCandidato2,votosHoraCandidato3,votosHoraCandidato4,votosHoraCandidato5]
         for i in range(len(total_votos)):
             print('prueva votos',total_votos[i])
+            dataHour= total_votos[i]['candidato_id']
             nombre = total_votos[i]['candidato_id']=Candidato.objects.get(id=total_votos[i]['candidato_id']).nombre
             total_votos[i]['name']=total_votos[i].pop('candidato_id')
             total_votos[i]['y']=total_votos[i]['data']
@@ -220,9 +222,8 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
             serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
-                'data':ArrayVotosHoraCandidato[i]
+                'data':ArrayVotosHoraCandidato[int(dataHour)-1]
             })
-            print(i)
         print('viejaseria',lista_votos)
         print('nueva serie',serieVotoshora)
         context ['graph_votos_candidato'] =lista_votos

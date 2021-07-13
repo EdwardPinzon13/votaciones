@@ -8,6 +8,6 @@ class VerificarVotanteForm(forms.ModelForm):
         fields = ("cedula","email")
         widgets = {
             'cedula': NumberInput(attrs={'placeholder': 'Cédula'}),
-            'email':  EmailInput(attrs={'placeholder':'Correo Electrónico'})
+            'email':  EmailInput(attrs={'placeholder':'Correo Electrónico','required':True})
         }
 

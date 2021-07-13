@@ -17,10 +17,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
 
-    def save(self,*args,**kwargs):
+    """"def save(self,*args,**kwargs):
         print('hola', User.username)
         password2 = self.set_password(self.password)
-        super(User,self).save(*args,**kwargs)
+        super(User,self).save(*args,**kwargs)"""
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email','name','last_name']
