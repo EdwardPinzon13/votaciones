@@ -20,6 +20,8 @@ class Migration(migrations.Migration):
                 ('apellido', models.CharField(max_length=50)),
                 ('cargo', models.CharField(max_length=50)),
                 ('dependencia', models.CharField(max_length=50)),
+                ('email', models.EmailField(blank=True,null=True)),
+                ('estado_voto', models.BooleanField(default=False)),
             ],
             options={
                 'verbose_name': 'Candidato',

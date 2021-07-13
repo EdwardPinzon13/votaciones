@@ -10,8 +10,8 @@ class Votantes(models.Model):
     nombre = models.CharField(max_length=50)
     apellido  = models.CharField(max_length=50)
     cargo  = models.CharField(max_length=50)
-    dependencia  = models.CharField(max_length=50)
-    email = models.EmailField(blank=True)
+    dependencia  = models.CharField(max_length=50, blank=True,null=True)
+    email = models.EmailField(blank=True,null=True)
     estado_voto = models.BooleanField(default=False)
 
     class Meta:

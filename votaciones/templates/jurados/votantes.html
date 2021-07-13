@@ -1,0 +1,27 @@
+ {% extends "base.html" %}{% block head %} {% endblock head %}{% block title %} {% endblock title %} {% block content %}
+<div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in datos %}
+            <tr>
+                <th scope="row">{{data.id}}</th>
+                <td>{{data.votante.nombre}}</td>
+                <td>{{data.votante.apellido}}</td>
+                <td>{{data.votante.cargo}}</td>
+                <td>{{data.votante.email}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock content %}
