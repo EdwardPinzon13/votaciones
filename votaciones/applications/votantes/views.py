@@ -231,6 +231,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         context ['graph_votos_hora_candidato'] =serieVotoshora
 
         return context
+
 class TablaVotantesView(LoginRequiredMixin,TemplateView):
     template_name = "jurados/votantes.html"
     login_url = reverse_lazy('users_app:login-user')
@@ -239,5 +240,8 @@ class TablaVotantesView(LoginRequiredMixin,TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["datos"] = self.queryset
+        total_votos_momento =eleccion.objects.count()
+        porcentualMomento = "{0:.2f}".format(((total_votos_momento *100)/Votantes.objects.count()))
+        context["data"] = [float(porcentualMomento)]
         return context
 

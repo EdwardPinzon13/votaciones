@@ -5,6 +5,17 @@
   flex-flow: row nowrap;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+#a-report-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#a-report-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .navbar {
   background-color: var(--color-1);
   width: 100%;

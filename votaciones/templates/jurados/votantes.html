@@ -1,14 +1,26 @@
-{% extends "base.html" %}{% block head %} {% endblock head %}{% block title %}
-{% endblock title %} {% block content %}
+{% extends "base.html" %}{% block head %} {% load static %}
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+  crossorigin="anonymous"
+/>
+<script src="{% static 'lib/highcharts-8.1.2/highcharts.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/highcharts-more.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/solid-gauge.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/exporting.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/export-data.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/accessibility.js' %}"></script>
+{% endblock head %} {% block title %} {% endblock title %} {% block content %}
 
 <div id="a-voters-container">
   <div class="a-sidebar-container">
     {% load static %}
     <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-votos' %}">
-      <img src="{% static 'images/logout.svg' %}" />
+      <img src="{% static 'images/report-icon.svg' %}" />
     </a>
     <a class="a-sidebar-icon" href="{% url 'votante_app:tabla-votos' %}">
-      <img src="{% static 'images/logout.svg' %}" />
+      <img src="{% static 'images/users-icon.svg' %}" />
     </a>
   </div>
 
@@ -40,10 +52,22 @@
     <!-- TABLE -->
     <div id="a-tab-decoration-container">
       <div id="a-tab-container">
+        <!-- Prueba -->
+        <div id="a-chart-voters">
+          <figure class="highcharts-figure">
+            <div id="container-speed" class="chart-container"></div>
+            <center>
+              <p class="highcharts-description">
+                Porcentaje Actual de Votos Registrados
+              </p>
+            </center>
+          </figure>
+        </div>
+        <!--Fin prueba-->
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">Cedula</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Cargo</th>
@@ -53,7 +77,7 @@
           <tbody>
             {% for data in datos %}
             <tr>
-              <th scope="row">{{data.id}}</th>
+              <th scope="row">{{data.votante.cedula}}</th>
               <td>{{data.votante.nombre}}</td>
               <td>{{data.votante.apellido}}</td>
               <td>{{data.votante.cargo}}</td>
@@ -64,6 +88,117 @@
         </table>
       </div>
     </div>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+      integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+      crossorigin="anonymous"
+    />
   </div>
 </div>
+
+<script>
+  var gaugeOptions = {
+      chart: {
+          type: 'solidgauge'
+      },
+
+      title: null,
+
+      pane: {
+          center: ['50%', '85%'],
+          size: '140%',
+          startAngle: -90,
+          endAngle: 90,
+          background: {
+              backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+              innerRadius: '60%',
+              outerRadius: '100%',
+              shape: 'arc'
+          }
+      },
+
+      exporting: {
+          enabled: false
+      },
+
+      tooltip: {
+          enabled: false
+      },
+
+      // the value axis
+      yAxis: {
+          stops: [
+              [0.8, '#00d986'], // green
+              [0.5, '#fdc30f'], // yellow
+              [0.2, '#d90024'] // red
+          ],
+          lineWidth: 0,
+          tickWidth: 0,
+          minorTickInterval: null,
+          tickAmount: 2,
+          title: {
+              y: -70
+          },
+          labels: {
+              y: 16
+          }
+      },
+
+      plotOptions: {
+          solidgauge: {
+              dataLabels: {
+                  y: 5,
+                  borderWidth: 0,
+                  useHTML: true
+              }
+          }
+      }
+  };
+
+  // The speed gauge
+  var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+      yAxis: {
+          min: 0,
+          max: 100,
+          title: {
+              text: 'Votos'
+          }
+      },
+
+      credits: {
+          enabled: false
+      },
+
+      series: [{
+          name: '% Votos',
+          data: {{data|safe }},
+          dataLabels: {
+              format: '<div style="text-align:center">' +
+                  '<span style="font-size:25px">{y}</span><br/>' +
+                  '<span style="font-size:12px;opacity:0.4">% Votos</span>' +
+                  '</div>'
+          },
+          tooltip: {
+              valueSuffix: ' % Votos'
+          }
+      }]
+
+  }));
+
+
+  // Bring life to the dials
+  setInterval(function() {
+      // Speed
+      var point,
+          newVal,
+          inc;
+
+      if (chartSpeed) {
+          point = chartSpeed.series[0].points[0];
+          newVal = point.y;
+          point.update(newVal);
+      }
+  }, 10000);
+</script>
 {% endblock content %}
