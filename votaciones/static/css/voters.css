@@ -1,0 +1,57 @@
+#a-voters-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#a-tab-decoration-container {
+  position: fixed;
+  overflow-y: scroll;
+  height: calc(100% - 78px);
+  width: calc(100% - 60px);
+  padding: 40px;
+  right: 0;
+}
+
+#a-tab-container {
+  background-color: var(--color-4);
+  height: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  overflow: scroll;
+}
+
+table {
+  font-family: Montserrat !important;
+}
+
+.table > thead {
+  background-color: white;
+  font-size: 18px;
+  letter-spacing: -0.18px;
+  text-align: center;
+  color: #333333;
+  border-radius: 30px;
+}
+
+th,
+td {
+  padding: 15px !important;
+  text-align: left;
+  border: 0 !important;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child,
+table.Info tr:first-child td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child,
+table.Info tr:first-child td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
