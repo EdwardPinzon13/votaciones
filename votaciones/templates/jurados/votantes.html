@@ -1,27 +1,69 @@
- {% extends "base.html" %}{% block head %} {% endblock head %}{% block title %} {% endblock title %} {% block content %}
-<div>
-    <table class="table">
-        <thead class="thead-dark">
+{% extends "base.html" %}{% block head %} {% endblock head %}{% block title %}
+{% endblock title %} {% block content %}
+
+<div id="a-voters-container">
+  <div class="a-sidebar-container">
+    {% load static %}
+    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-votos' %}">
+      <img src="{% static 'images/logout.svg' %}" />
+    </a>
+    <a class="a-sidebar-icon" href="{% url 'votante_app:tabla-votos' %}">
+      <img src="{% static 'images/logout.svg' %}" />
+    </a>
+  </div>
+
+  <div class="a-main-container">
+    <!-- SIDEBAR -->
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        {% load static %}
+        <img
+          src="{% static 'images/logo/villavo-white.svg' %}"
+          alt=""
+          height="30"
+        />
+
+        <form class="d-flex">
+          <a
+            href="{% url 'users_app:logout-user' %}"
+            class="a-icon-text-btn"
+            type="button"
+          >
+            <div class="a-icon-btn">
+              <img src="{% static 'images/logout.svg' %}" alt="" />
+            </div>
+            Salir
+          </a>
+        </form>
+      </div>
+    </nav>
+    <!-- TABLE -->
+    <div id="a-tab-decoration-container">
+      <div id="a-tab-container">
+        <table class="table">
+          <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Cargo</th>
-                <th scope="col">Email</th>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Cargo</th>
+              <th scope="col">Email</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             {% for data in datos %}
             <tr>
-                <th scope="row">{{data.id}}</th>
-                <td>{{data.votante.nombre}}</td>
-                <td>{{data.votante.apellido}}</td>
-                <td>{{data.votante.cargo}}</td>
-                <td>{{data.votante.email}}</td>
+              <th scope="row">{{data.id}}</th>
+              <td>{{data.votante.nombre}}</td>
+              <td>{{data.votante.apellido}}</td>
+              <td>{{data.votante.cargo}}</td>
+              <td>{{data.votante.email}}</td>
             </tr>
             {% endfor %}
-        </tbody>
-    </table>
-
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock content %}

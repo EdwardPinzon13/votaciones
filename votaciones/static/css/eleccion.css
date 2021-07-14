@@ -53,6 +53,5 @@
 
 #a-eleccion-content #a-row #a-left-column img {
   width: 100%;
-  object-fit: contain;
-  height: 50%;
+  object-fit: cover;
 }

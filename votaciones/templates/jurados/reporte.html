@@ -15,60 +15,75 @@
 {% endblock head %} {% block content %}
 
 <div id="a-report-container">
-  <nav class="navbar navbar-dark">
-    <div class="container-fluid">
-      {% load static %}
-      <img
-        src="{% static 'images/logo/villavo-white.svg' %}"
-        alt=""
-        height="30"
-      />
+  <div class="a-sidebar-container">
+    {% load static %}
+    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-votos' %}">
+      <img src="{% static 'images/logout.svg' %}" />
+    </a>
+    <a class="a-sidebar-icon" href="{% url 'votante_app:tabla-votos' %}">
+      <img src="{% static 'images/logout.svg' %}" />
+    </a>
+  </div>
 
-      <form class="d-flex">
-        <a
-          href="{% url 'users_app:logout-user' %}"
-          class="a-icon-text-btn"
-          type="button"
+  <div class="a-main-container">
+    <!-- SIDEBAR -->
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        {% load static %}
+        <img
+          src="{% static 'images/logo/villavo-white.svg' %}"
+          alt=""
+          height="30"
+        />
+
+        <form class="d-flex">
+          <a
+            href="{% url 'users_app:logout-user' %}"
+            class="a-icon-text-btn"
+            type="button"
+          >
+            <div class="a-icon-btn">
+              <img src="{% static 'images/logout.svg' %}" alt="" />
+            </div>
+            Salir
+          </a>
+        </form>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div id="a-charts-container">
+      <!-- ROW -->
+      <div id="a-row">
+        <div class="a-chart-figure">
+          <figure class="highcharts-figure">
+            <div id="container"></div>
+          </figure>
+        </div>
+        <div class="a-separator"></div>
+        <div class="a-chart-figure">
+          <figure class="highcharts-figure">
+            <div id="container3"></div>
+          </figure>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div id="a-horizontal-chart" class="a-chart-figure">
+        <figure class="highcharts-figure">
+          <div id="container2"></div>
+        </figure>
+      </div>
+
+      <!-- FOOTER -->
+
+      <div class="a-footer">
+        <span>
+          Desarrollado por la Dirección de Sistemas Tecnológicos e
+          Informáticos</span
         >
-          <div class="a-icon-btn">
-            <img src="{% static 'images/logout.svg' %}" alt="" />
-          </div>
-          Salir
-        </a>
-      </form>
+        <span> Secretaria de las TIC- Villavicencio Cambia Contigo</span>
+      </div>
     </div>
-  </nav>
-  <div id="a-charts-container">
-    <div class="a-chart-figure">
-      <figure class="highcharts-figure">
-        <div id="container"></div>
-        <!-- <p class="highcharts-description">decripción 1</p> -->
-      </figure>
-    </div>
-    <div class="a-separator"></div>
-    <div class="a-chart-figure">
-      <figure class="highcharts-figure">
-        <div id="container3"></div>
-        <!-- <p class="highcharts-description">torta 3d</p> -->
-      </figure>
-    </div>
-    <!--<div class="a-separator"></div>
-    <div class="a-chart-figure">
-      <figure class="highcharts-figure">
-        <div id="container2"></div>
-        <!-- <p class="highcharts-description">torta 3d</p> 
-      </figure>
-    </div>-->
-  </div>
-  <div>
-    <div id="container2"></div>
-  </div>
-  <div class="a-footer">
-    <span>
-      Desarrollado por la Dirección de Sistemas Tecnológicos e
-      Informáticos</span
-    >
-    <span> Secretaria de las TIC- Villavicencio Cambia Contigo</span>
   </div>
 </div>
 
@@ -160,60 +175,58 @@
 </script>
 <!-- Graficas-->
 <script>
-Highcharts.chart('container2', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Votaciones Representante 2021'
-    },
-    subtitle: {
-        text: ''
-    },
-    accessibility: {
-        announceNewData: {
-            enabled: true
-        }
-    },
-    xAxis: {
-        type: 'category'
-    },
-    yAxis: {
-        title: {
-            text: 'Total Votos-Candidato'
-        }
+  Highcharts.chart('container2', {
+      chart: {
+          type: 'column',
+            backgroundColor: '#f4f3f8',
+      },
+      title: {
+          text: 'Candidato / Representante'
+      },
+      accessibility: {
+          announceNewData: {
+              enabled: true
+          }
+      },
+      xAxis: {
+          type: 'category'
+      },
+      yAxis: {
+          title: {
+              text: 'Total Votos-Candidato'
+          }
 
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-                format: '{point.y:.1f}'
-            }
-        }
-    },
+      },
+      legend: {
+          enabled: false
+      },
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: true,
+                  format: '{point.y:.1f}'
+              }
+          }
+      },
 
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-    },
+      tooltip: {
+          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+      },
 
-    series: [
-        {
-            name: "Candidatos",
-            colorByPoint: true,
-            data:{{graph_votos_candidato|safe}}
-        }
-    ],
-    drilldown: {
-        series: {{graph_votos_hora_candidato|safe}}
+      series: [
+          {
+              name: "Candidatos",
+              colorByPoint: true,
+              data:{{graph_votos_candidato|safe}}
+          }
+      ],
+      drilldown: {
+          series: {{graph_votos_hora_candidato|safe}}
 
-    }
-});
+      }
+  });
 </script>
 <!-- Optional JavaScript; choose one of the two! -->
 <!-- Option 1: Bootstrap Bundle with Popper -->
