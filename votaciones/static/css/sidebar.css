@@ -25,3 +25,15 @@
   height: 25px;
   object-fit: contain;
 }
+
+.active {
+  background: var(--color-2);
+}
+
+.active img {
+  filter: brightness(0) invert(1);
+}
+
+.navbar {
+  z-index: 100;
+}

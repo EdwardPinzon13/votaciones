@@ -14,18 +14,19 @@
 {% endblock head %} {% block title %} {% endblock title %} {% block content %}
 
 <div id="a-voters-container">
+  <!-- SIDEBAR -->
   <div class="a-sidebar-container">
     {% load static %}
     <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-votos' %}">
       <img src="{% static 'images/report-icon.svg' %}" />
     </a>
-    <a class="a-sidebar-icon" href="{% url 'votante_app:tabla-votos' %}">
+    <a class="a-sidebar-icon active" href="{% url 'votante_app:tabla-votos' %}">
       <img src="{% static 'images/users-icon.svg' %}" />
     </a>
   </div>
 
   <div class="a-main-container">
-    <!-- SIDEBAR -->
+    <!-- NAVBAR -->
     <nav class="navbar navbar-dark">
       <div class="container-fluid">
         {% load static %}
@@ -53,15 +54,13 @@
     <div id="a-tab-decoration-container">
       <div id="a-tab-container">
         <!-- Prueba -->
-        <div id="a-chart-voters">
-          <figure class="highcharts-figure">
-            <div id="container-speed" class="chart-container"></div>
-            <center>
-              <p class="highcharts-description">
-                Porcentaje Actual de Votos Registrados
-              </p>
-            </center>
-          </figure>
+        <div id="a-charts">
+          <div id="a-chart-voters">
+            <figure class="highcharts-figure">
+              <div id="container-speed" class="chart-container"></div>
+            </figure>
+          </div>
+          <h3>Porcentaje de votaciones</h3>
         </div>
         <!--Fin prueba-->
         <table class="table">
@@ -99,15 +98,15 @@
 
 <script>
   var gaugeOptions = {
-      chart: {
-          type: 'solidgauge'
-      },
-
-      title: null,
-
+    chart: {
+      type: 'solidgauge',
+      height: 200,
+      backgroundColor: '#f4f3f8'
+    },
+    title: '',
       pane: {
           center: ['50%', '85%'],
-          size: '140%',
+          size: '100%',
           startAngle: -90,
           endAngle: 90,
           background: {

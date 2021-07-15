@@ -33,6 +33,28 @@
   overflow: scroll;
 }
 
+#a-charts {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#a-charts h3 {
+  font-family: Quicksand;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  color: #00b7ff;
+}
+
+#a-chart-voters {
+  width: 45%;
+}
+
+.a-chart-figure figure {
+  width: 100%;
+}
+
 table {
   font-family: Montserrat !important;
 }
