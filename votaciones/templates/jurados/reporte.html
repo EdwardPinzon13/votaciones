@@ -15,9 +15,13 @@
 {% endblock head %} {% block content %}
 
 <div id="a-report-container">
+  <!-- SIDEBAR -->
   <div class="a-sidebar-container">
     {% load static %}
-    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-votos' %}">
+    <a
+      class="a-sidebar-icon active"
+      href="{% url 'votante_app:reporte-votos' %}"
+    >
       <img src="{% static 'images/report-icon.svg' %}" />
     </a>
     <a class="a-sidebar-icon" href="{% url 'votante_app:tabla-votos' %}">
@@ -26,7 +30,7 @@
   </div>
 
   <div class="a-main-container">
-    <!-- SIDEBAR -->
+    <!-- NAVBAR -->
     <nav class="navbar navbar-dark">
       <div class="container-fluid">
         {% load static %}
