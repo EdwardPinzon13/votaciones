@@ -71,19 +71,33 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
+  transition: 0.5s linear all;
+  border: 2px solid #2b59c400;
 }
 .a-candidate-info .a-candidate-img {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  transition: 0.5s linear all;
+}
+
+.a-candidate-info .a-candidate-img:hover img {
+  border-color: var(--color-1);
+}
+
+.a-candidate-info .a-candidate-img:hover .a-main-btn {
+  display: block;
+  opacity: 1;
 }
 
 .a-candidate-info .a-candidate-img .a-main-btn {
-  height: 45px;
+  height: 35px;
   padding: 0 30px;
   margin-top: -20px;
   width: fit-content;
+  opacity: 0;
+  transition: 0.5s linear all;
 }
 
 .a-candidate-info .a-candidate-desc {
@@ -93,24 +107,24 @@
   flex-flow: column nowrap;
 }
 .a-candidate-info .a-candidate-id {
-  font-family: Photoshoot; /* TODO */
+  font-family: Photoshoot;
   font-size: 16px;
   letter-spacing: -0.2px;
   color: var(--color-2);
 }
 
 .a-candidate-info .a-candidate-name {
-  font-family: Montserrat; /* TODO */
-  font-size: 18px;
+  font-family: Montserrat;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: -0.25px;
   color: var(--text-color);
 }
 
 .a-candidate-info .a-candidate-other {
-  font-family: Montserrat; /* TODO */
+  font-family: Montserrat;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.18px;
   color: var(--text-color);
   display: flex;
@@ -151,5 +165,32 @@
     width: 80%;
     margin-bottom: 20px;
     gap: 10px;
+  }
+
+  .a-candidate-info .a-candidate-img .a-main-btn {
+    opacity: 1;
+  }
+
+  .a-candidate-info .a-candidate-desc {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .a-candidate-info .a-candidate-desc br {
+    display: none;
+  }
+  .a-candidate-info .a-candidate-other {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 5px;
+  }
+  .a-candidate-info .last {
+    margin-top: 0;
+    line-height: 15px;
+  }
+  .a-candidate-info .a-candidate-name {
+    font-size: 16px;
+    line-height: 8px;
   }
 }
