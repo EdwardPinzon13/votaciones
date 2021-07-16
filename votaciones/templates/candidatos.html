@@ -29,16 +29,8 @@
                             <br/>
                             <div class="a-candidate-name">{{c.nombre}} </div>
                             <div class="a-candidate-name">{{c.apellido}} </div>
-                            <br/>
-                            <div class="a-candidate-other">
-                                <strong>{{c.cargo}}</strong>
-                            </div>
-                            <br/>
-                            <div class="a-candidate-other">
-                                <div>
-                                    <strong>{{c.dependencia}}</strong>
-                                </div>
-                            </div>
+                            <div class="a-candidate-other">{{c.cargo}}</div>
+                            <div class="a-candidate-other last">{{c.dependencia}}</div>
                         </div>
                     </div>
                     {% endfor %}
