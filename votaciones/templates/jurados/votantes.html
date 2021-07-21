@@ -36,7 +36,7 @@
           height="30"
         />
 
-        <form class="d-flex">
+                <form class="d-flex">
           <a
             href="{% url 'users_app:logout-user' %}"
             class="a-icon-text-btn"
@@ -66,10 +66,10 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">Cedula</th>
+              <th scope="col">Cédula</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
-              <th scope="col">Cargo</th>
+              <th scope="col">Teléfono</th>
               <th scope="col">Email</th>
             </tr>
           </thead>
@@ -79,7 +79,7 @@
               <th scope="row">{{data.votante.cedula}}</th>
               <td>{{data.votante.nombre}}</td>
               <td>{{data.votante.apellido}}</td>
-              <td>{{data.votante.cargo}}</td>
+              <td>{{data.votante.numero}}</td>
               <td>{{data.votante.email}}</td>
             </tr>
             {% endfor %}

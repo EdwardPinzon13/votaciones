@@ -239,6 +239,7 @@ class TablaVotantesView(LoginRequiredMixin,TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        print(' query..',self.queryset)
         context["datos"] = self.queryset
         total_votos_momento =eleccion.objects.count()
         porcentualMomento = "{0:.2f}".format(((total_votos_momento *100)/Votantes.objects.count()))
