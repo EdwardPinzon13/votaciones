@@ -245,3 +245,5 @@ class TablaVotantesView(LoginRequiredMixin,TemplateView):
         context["data"] = [float(porcentualMomento)]
         return context
 
+class IndexTemporal(TemplateView):
+    template_name = "temporal.html"
