@@ -1,7 +1,8 @@
 from .base import *
+import os
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -25,7 +26,8 @@ DATABASES = {
 }
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS =  [BASE_DIR / 'static']
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATICFILES_DIRS =  [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  BASE_DIR / 'media'
