@@ -10,7 +10,7 @@
         <img
           src="{% static 'images/logo/villavo-white.svg' %}"
           alt=""
-          height="50"
+          id="a-logo-img"
         />
         <form class="d-flex">
           <a
@@ -23,27 +23,36 @@
         </form>
       </div>
     </nav>
+
     <div id="a-row">
-      <div id="a-left-column">
+      <div id="a-top-row">
         {% load static %}
         <img src="{% static 'images/figure-main.svg' %}" />
+        <div id="a-subtitle">
+          <span
+            >Elección a Representantes de los Empleados a la Comisión de
+            Personal</span
+          >
+          <div id="a-rounded-rectangle"><span>Vigencia 2021-2023</span></div>
+        </div>
       </div>
-      <div id="a-right-column">
-        <h5>Ingresa tu número de identificación</h5>
+      <div id="a-bottom-row">
+        <h5>Ingresa los datos para validar tu votación</h5>
         <form method="post">
-          {% csrf_token %} {{form.as_p}}
+          <div id="a-inputs-container">{% csrf_token %} {{form.as_p}}</div>
           <button class="a-main-btn" type="submit">Siguiente</button>
         </form>
+
+        {% load static %}
+        <img src="{% static 'images/good-treat.svg' %}" id="a-good-treat"/>
       </div>
     </div>
-    <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
-        <span>
-          Desarrollado por la Dirección de Sistemas Tecnológicas e Informáticos
-          Secretaria de las TIC - Villavicencio Cambia Contigo
-        </span>
-      </div>
-    </nav>
+
+    <div id="a-footer">
+      Desarrollado por la Dirección de Sistemas Tecnológicos e Informáticos
+      <br />
+      Secretaria de las TIC - Villavicencio Cambia Contigo
+    </div>
   </div>
 </div>
 

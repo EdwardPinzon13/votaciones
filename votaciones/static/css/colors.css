@@ -19,7 +19,12 @@ body,
   position: relative;
 }
 
-.navbar {
+/* .navbar {
   background-color: transparent;
   padding: 20px 10px !important;
+} */
+
+.navbar {
+  background-color: var(--color-1);
+  width: 100%;
 }
