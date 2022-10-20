@@ -138,11 +138,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         ArrayVotosCandidato25=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         ArrayVotosCandidato26=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         ArrayVotosCandidato27=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        ArrayVotosCandidato28=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        ArrayVotosCandidato29=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        ArrayVotosCandidato30=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        ArrayVotosCandidato31=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        ArrayVotosCandidatosDocentes= np.zeros((30,24))
+        ArrayVotosCandidatosDocentes= np.zeros((27,24))
         #ArrayVotosCandidatosDocentes[29][23]=1
 
         for i in range(23):
@@ -191,7 +187,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
                         ArrayVotosCandidato5[i]=votosHora[j]['data']
                     #if votosHora[j]['candidato_id']!=5:
                     #    ArrayVotosCandidato5.append(0)
-                    
+
             else:
                 ArrayVotosCandidato1[i]=0
                 ArrayVotosCandidato2[i]=0
@@ -243,9 +239,6 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
         votosHoraCandidato25=[]
         votosHoraCandidato26=[]
         votosHoraCandidato27=[]
-        votosHoraCandidato28=[]
-        votosHoraCandidato29=[]
-        votosHoraCandidato30=[]
         listasVotosHora = self.get_votos_candidate_for_hour()
         total_votos = self.get_votos_candidato()
         for j in range(24):
@@ -279,9 +272,6 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
             votosHoraCandidato25.append([str(j)+' - '+str(h+1),listasVotosHora[24][j]])
             votosHoraCandidato26.append([str(j)+' - '+str(h+1),listasVotosHora[25][j]])
             votosHoraCandidato27.append([str(j)+' - '+str(h+1),listasVotosHora[26][j]])
-            votosHoraCandidato28.append([str(j)+' - '+str(h+1),listasVotosHora[27][j]])
-            votosHoraCandidato29.append([str(j)+' - '+str(h+1),listasVotosHora[28][j]])
-            votosHoraCandidato30.append([str(j)+' - '+str(h+1),listasVotosHora[29][j]])
 
         ArrayVotosHoraCandidato=[
             votosHoraCandidato1,
@@ -311,9 +301,6 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
             votosHoraCandidato25,
             votosHoraCandidato26,
             votosHoraCandidato27,
-            votosHoraCandidato28,
-            votosHoraCandidato29,
-            votosHoraCandidato30
             ]
         for i in range(len(total_votos)):
             print('prueva votos',total_votos[i])
@@ -391,19 +378,19 @@ class reporteVotacionDirectivo(LoginRequiredMixin,TemplateView):
             if votosHora.exists():
                 for j in range(len(votosHora)):
                     print(votosHora[j]['data'])
-                    if votosHora[j]['candidato_id']==33:
+                    if votosHora[j]['candidato_id']==29:
                          ArrayVotosCandidatosDocentes[0][i] = votosHora[j]['data']
-                    if votosHora[j]['candidato_id']==34:
+                    if votosHora[j]['candidato_id']==30:
                          ArrayVotosCandidatosDocentes[1][i] = votosHora[j]['data']
-                    if votosHora[j]['candidato_id']==35:
+                    if votosHora[j]['candidato_id']==31:
                          ArrayVotosCandidatosDocentes[2][i] = votosHora[j]['data']
-                    if votosHora[j]['candidato_id']==36:
+                    if votosHora[j]['candidato_id']==32:
                          ArrayVotosCandidatosDocentes[3][i] = votosHora[j]['data']
-                    if votosHora[j]['candidato_id']==37:
+                    if votosHora[j]['candidato_id']==33:
                          ArrayVotosCandidatosDocentes[4][i] = votosHora[j]['data']
-                    if votosHora[j]['candidato_id']==38:
+                    if votosHora[j]['candidato_id']==34:
                          ArrayVotosCandidatosDocentes[5][i] = votosHora[j]['data']
-                    if votosHora[j]['candidato_id']==39:
+                    if votosHora[j]['candidato_id']==35:
                          ArrayVotosCandidatosDocentes[6][i] = votosHora[j]['data']
         print(ArrayVotosCandidatosDocentes)         
         return ArrayVotosCandidatosDocentes
@@ -458,43 +445,43 @@ class reporteVotacionDirectivo(LoginRequiredMixin,TemplateView):
                 nombre,(total_votos[i]['data'][0]*100/total_parcial)
                 ])
             lista_votos.append(total_votos[i])
-            if dataHour==33:
+            if dataHour==29:
                  serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
                 'data':ArrayVotosHoraCandidato[0]
             })        
-            if dataHour==34:
+            if dataHour==30:
                 serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
                 'data':ArrayVotosHoraCandidato[1]
             })
-            if dataHour==35:
+            if dataHour==31:
                 serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
                 'data':ArrayVotosHoraCandidato[2]
             })
-            if dataHour==36:
+            if dataHour==32:
                 serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
                 'data':ArrayVotosHoraCandidato[3]
             })
-            if dataHour==37:
+            if dataHour==33:
                 serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
                 'data':ArrayVotosHoraCandidato[4]
             })
-            if dataHour==38:
+            if dataHour==34:
                 serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
                 'data':ArrayVotosHoraCandidato[5]
             }) 
-            if dataHour==39:
+            if dataHour==35:
                 serieVotoshora.append({
                     'name':total_votos[i]['name'],
                     'id':total_votos[i]['name'],
@@ -531,9 +518,9 @@ class reporteVotacionAdministrativo(LoginRequiredMixin,TemplateView):
             if votosHora.exists():
                 for j in range(len(votosHora)):
                     print(votosHora[j]['data'])
-                    if votosHora[j]['candidato_id']==31:
+                    if votosHora[j]['candidato_id']==27:
                          ArrayVotosCandidatosDocentes[0][i] = votosHora[j]['data']
-                    if votosHora[j]['candidato_id']==32:
+                    if votosHora[j]['candidato_id']==28:
                          ArrayVotosCandidatosDocentes[1][i] = votosHora[j]['data']
         return ArrayVotosCandidatosDocentes
 
@@ -572,13 +559,13 @@ class reporteVotacionAdministrativo(LoginRequiredMixin,TemplateView):
                 nombre,(total_votos[i]['data'][0]*100/total_parcial)
                 ])
             lista_votos.append(total_votos[i])
-            if dataHour==31:
+            if dataHour==27:
                  serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
                 'data':ArrayVotosHoraCandidato[0]
             })        
-            if dataHour==32:
+            if dataHour==28:
                 serieVotoshora.append({
                 'name':total_votos[i]['name'],
                 'id':total_votos[i]['name'],
