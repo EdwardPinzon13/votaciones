@@ -1,7 +1,8 @@
 from django.db import models
-from applications.votantes.models import Votantes
+from applications.votantes.models import Votantes,tipo_candidato
 from model_utils.models import TimeStampedModel
 # Create your models here.
+
 
 class Candidato(models.Model):
     nombre  = models.CharField(max_length=100)
@@ -9,6 +10,7 @@ class Candidato(models.Model):
     cargo  = models.CharField(max_length=100,null=True)
     dependencia = models.CharField(max_length=100,null=True)
     foto = models.ImageField(("Foto Candidato"), upload_to='candidatos')
+    tipo_candidato = models.ForeignKey(tipo_candidato, on_delete=models.CASCADE, related_name = 'candidate_tipo_candidato')
 
     class Meta:
         verbose_name = "Candidato"
@@ -18,7 +20,7 @@ class Candidato(models.Model):
         return self.nombre + ' - ' + self.apellido + ' - ' + self.cargo + ' - ' + self.dependencia
 
 class eleccion(TimeStampedModel):
-    candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE)
+    candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE,related_name='eleccion_to_candidate')
     votante = models.ForeignKey(Votantes,on_delete=models.CASCADE,unique=True)
 
     class Meta:

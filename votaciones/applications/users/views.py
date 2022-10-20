@@ -17,7 +17,7 @@ from .forms import LoginForm
 class LoginUser(FormView):
     template_name= 'jurados/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('votante_app:reporte-votos')
+    success_url = reverse_lazy('votante_app:tabla-votos')
 
 
     def form_valid(self,form):

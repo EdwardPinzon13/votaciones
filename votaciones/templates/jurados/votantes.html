@@ -17,8 +17,14 @@
   <!-- SIDEBAR -->
   <div class="a-sidebar-container">
     {% load static %}
-    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-votos' %}">
-      <img src="{% static 'images/report-icon.svg' %}" />
+    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-votos' %} " id='a-report-btn'>
+      <abbr title="Reporte Docente"> <img src="{% static 'images/report-icon.svg' %}" /></abbr>.
+    </a>
+    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-directivo' %} " id='a-report-btn'>
+      <abbr title="Reporte Directivo Docente"> <img src="{% static 'images/report-icon.svg' %}" /></abbr>.
+    </a>
+    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-administrativo' %} " id='a-report-btn'>
+      <abbr title="Reporte Administrativo"> <img src="{% static 'images/report-icon.svg' %}" /></abbr>.
     </a>
     <a class="a-sidebar-icon active" href="{% url 'votante_app:tabla-votos' %}">
       <img src="{% static 'images/users-icon.svg' %}" />
@@ -96,6 +102,21 @@
   </div>
 </div>
 
+<script>
+ function getDate() {
+        var today = new Date();
+        var local = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+        if (today.getFullYear() >= 2022 && (today.getMonth() + 1) >= 10 && today.getDate() >= 28 && today.getHours() >= 16) {
+            document.getElementById("a-report-btn").style.visibility = 'visible';
+        } else {
+            document.getElementById("a-report-btn").removeAttribute('href');
+        }
+    }
+
+    window.onload = getDate();
+</script>
 <script>
   var gaugeOptions = {
     chart: {

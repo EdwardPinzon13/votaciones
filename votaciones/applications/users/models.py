@@ -23,7 +23,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         super(User,self).save(*args,**kwargs)"""
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email','name','last_name']
+    REQUIRED_FIELDS = ['email','name']
 
     def __str__(self):
         return f'{self.name} {self.last_name}'
