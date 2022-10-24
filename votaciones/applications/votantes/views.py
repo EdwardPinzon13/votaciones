@@ -42,7 +42,7 @@ class VerificarVotante(FormView):
                     return render(
                         request,
                         'error.html',
-                        {'message_error': 'Lo sentimos el numero de cedula  no se encuntra registrado, comunicarse con votacionesContigo@gmail.com para más información'}
+                        {'message_error': 'Lo sentimos el numero de cedula  no se encuntra registrado, comunicarse con votacionesrepresentantes2022@gmail.com para más información'}
                         )
         return super().post(request,*args,**kwargs)
 
