@@ -11,7 +11,7 @@
     </nav>
     <div id="a-candidates-content">
         <div id="a-election-title">
-            <h6>Elección de Representantes al Comité de Convicencia Laboral. Vigencia 2022 - 2024</h6>
+            <h6>Tarjetón {{user.tipo_candidato}}</h6>
         </div>
         <div id="a-form-container">
             <form method="post" name="eleccion">
@@ -19,13 +19,14 @@
                 <input type="hidden" id="cc" name="cc" value="{{user.cedula}}" readonly="readonly"></input>
                 <div id="a-candidates-main-container">
                     {% for c in candidatos %}
+                    
                     <div class="a-candidate-info">
                         <div class="a-candidate-img">
                             <img src="{{c.foto.url}}" class="card-img-top" alt="... ">
                             <button type="submit " class="a-main-btn" onclick="valueRadio('{{c.id}}')">Votar</button>
                         </div>
                         <div class="a-candidate-desc">
-                            <div class="a-candidate-id">Candidato  </div>
+                            <div class="a-candidate-id"># Tarjetón  {{c.num_tarjeton}} </div>
                             <br/>
                             <div class="a-candidate-name">{{c.nombre}} </div>
                             <div class="a-candidate-name">{{c.apellido}} </div>

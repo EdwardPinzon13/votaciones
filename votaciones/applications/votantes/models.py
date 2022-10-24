@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.core.validators import RegexValidator
 
@@ -21,7 +22,7 @@ class Votantes(models.Model):
     email = models.EmailField(blank=True,null=True)
     estado_voto = models.BooleanField(default=False)
     tipo_candidato = models.ForeignKey(tipo_candidato, on_delete=models.CASCADE, related_name = 'votante_tipo_candidato')
-
+    
     class Meta:
         verbose_name = "Votante"
         verbose_name_plural = "Votantes"

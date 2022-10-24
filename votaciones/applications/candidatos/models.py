@@ -11,7 +11,7 @@ class Candidato(models.Model):
     dependencia = models.CharField(max_length=100,null=True)
     foto = models.ImageField(("Foto Candidato"), upload_to='candidatos')
     tipo_candidato = models.ForeignKey(tipo_candidato, on_delete=models.CASCADE, related_name = 'candidate_tipo_candidato')
-
+    num_tarjeton = models.IntegerField('Número del tarjetón', default=1)
     class Meta:
         verbose_name = "Candidato"
         verbose_name_plural = "Candidatos"
