@@ -149,11 +149,12 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
                 )
             if votosHora.exists():
                 for j in range(len(votosHora)):
-                    print(j, votosHora[j]['candidato_id'])
+                    #print(j, votosHora[j]['candidato_id'])
                     if votosHora[j]['candidato_id']>0:
                         ArrayVotosCandidatosDocentes[votosHora[j]['candidato_id']-1][i] = votosHora[j]['data']
                     else:
                         ArrayVotosCandidatosDocentes[votosHora[j]['candidato_id']][i] = votosHora[j]['data']
+                        #print('este es el array de 0', ArrayVotosCandidatosDocentes[0])
                     
                     """if votosHora[j]['candidato_id']==1:
                         ArrayVotosCandidato1[i]=votosHora[j]['data']
@@ -252,7 +253,7 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
             votosHoraCandidato19.append([str(j)+' - '+str(h+1),listasVotosHora[18][j]])
             votosHoraCandidato20.append([str(j)+' - '+str(h+1),listasVotosHora[19][j]])
            
-
+        
         ArrayVotosHoraCandidato=[
             votosHoraCandidato1,
             votosHoraCandidato2,
@@ -288,11 +289,19 @@ class reporteVotacion(LoginRequiredMixin,TemplateView):
                 nombre,(total_votos[i]['data'][0]*100/total_parcial)
                 ])
             lista_votos.append(total_votos[i])
-            serieVotoshora.append({
-                'name':total_votos[i]['name'],
-                'id':total_votos[i]['name'],
-                'data':ArrayVotosHoraCandidato[int(dataHour)-1]
-            })
+            print('data hour', dataHour)
+            if dataHour!=0:
+                serieVotoshora.append({
+                    'name':total_votos[i]['name'],
+                    'id':total_votos[i]['name'],
+                    'data':ArrayVotosHoraCandidato[int(dataHour)-1]
+                })
+            else:
+                serieVotoshora.append({
+                    'name':total_votos[i]['name'],
+                    'id':total_votos[i]['name'],
+                    'data':ArrayVotosHoraCandidato[int(dataHour)]
+                })
         print('viejaseria',lista_votos)
         print('nueva serie',serieVotoshora)
         context ['graph_votos_candidato'] =lista_votos
