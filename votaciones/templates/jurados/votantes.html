@@ -20,10 +20,10 @@
     <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-votos' %} " id='a-report-btn'>
       <abbr title="Reporte Docente"> <img src="{% static 'images/report-icon.svg' %}" /></abbr>.
     </a>
-    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-directivo' %} " id='a-report-btn'>
+    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-directivo' %} " id='a-report-btn2'>
       <abbr title="Reporte Directivo Docente"> <img src="{% static 'images/report-icon.svg' %}" /></abbr>.
     </a>
-    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-administrativo' %} " id='a-report-btn'>
+    <a class="a-sidebar-icon" href="{% url 'votante_app:reporte-administrativo' %} " id='a-report-btn3'>
       <abbr title="Reporte Administrativo"> <img src="{% static 'images/report-icon.svg' %}" /></abbr>.
     </a>
     <a class="a-sidebar-icon active" href="{% url 'votante_app:tabla-votos' %}">
@@ -108,11 +108,17 @@
         var local = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-        if (today.getFullYear() >= 2022 && (today.getMonth() + 1) >= 10 && today.getDate() >= 28 && today.getHours() >= 16) {
+        if (today.getFullYear() >= 2022 && (today.getMonth() + 1) >= 10 && today.getDate() >= 24 && today.getHours() >= 16) {
             document.getElementById("a-report-btn").style.visibility = 'visible';
+            document.getElementById("a-report-btn2").style.visibility = 'visible';
+            document.getElementById("a-report-btn3").style.visibility = 'visible';
         } else {
             document.getElementById("a-report-btn").removeAttribute('href');
+            document.getElementById("a-report-btn2").removeAttribute('href');
+            document.getElementById("a-report-btn3").removeAttribute('href');
         }
+
+        
     }
 
     window.onload = getDate();
