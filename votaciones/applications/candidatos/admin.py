@@ -15,5 +15,5 @@ class CandidatoAdmin(admin.ModelAdmin):
     search_fields = ('nombre','apellido')
 # Register your models here.
 admin.site.register(Candidato,CandidatoAdmin)
-#admin.site.register(eleccion)
+admin.site.register(eleccion)
 
