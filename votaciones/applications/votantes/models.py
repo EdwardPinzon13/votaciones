@@ -7,6 +7,13 @@ phone_regex = RegexValidator(regex=r'^\+?1?\d{5,15}$', message="Phone number mus
 
 class tipo_candidato(models.Model):
     type_candidate = models.CharField('Tipo de candidato', max_length=30)
+    
+    class Meta:
+        verbose_name = "Tipo de Candidato"
+        verbose_name_plural = "Tipos de candidato"
+
+    def __str__(self):
+        return self.type_candidate
 class Votantes(models.Model):
     cedula = models.CharField("Numero de identificación", validators=[phone_regex], max_length=15, primary_key=True)
     nombre = models.CharField(max_length=50)

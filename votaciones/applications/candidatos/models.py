@@ -17,7 +17,7 @@ class Candidato(models.Model):
         verbose_name_plural = "Candidatos"
 
     def __str__(self):
-        return self.nombre + ' - ' + self.apellido + ' - ' + self.cargo + ' - ' + self.dependencia
+        return self.nombre + ' - ' + self.apellido +  ' - ' + self.dependencia
 
 class eleccion(TimeStampedModel):
     candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE,related_name='eleccion_to_candidate')
