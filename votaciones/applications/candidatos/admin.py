@@ -13,6 +13,8 @@ class CandidatoAdmin(admin.ModelAdmin):
         'tipo_candidato'
     )
     search_fields = ('nombre','apellido')
+    
+
 # Register your models here.
 admin.site.register(Candidato,CandidatoAdmin)
 admin.site.register(eleccion)
