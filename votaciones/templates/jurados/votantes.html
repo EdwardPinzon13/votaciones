@@ -75,7 +75,6 @@
               <th scope="col">Cédula</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
-              <th scope="col">Teléfono</th>
               <th scope="col">Email</th>
             </tr>
           </thead>
@@ -85,7 +84,6 @@
               <th scope="row">{{data.votante.cedula}}</th>
               <td>{{data.votante.nombre}}</td>
               <td>{{data.votante.apellido}}</td>
-              <td>{{data.votante.numero}}</td>
               <td>{{data.votante.email}}</td>
             </tr>
             {% endfor %}
@@ -108,7 +106,7 @@
         var local = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-        if (today.getFullYear() >= 2022 && (today.getMonth() + 1) >= 10 && today.getDate() >= 24 && today.getHours() >= 16) {
+        if (today.getFullYear() >= 2022 && (today.getMonth() + 1) >= 10 && today.getDate() >= 27&& today.getHours() >= 16) {
             document.getElementById("a-report-btn").style.visibility = 'visible';
             document.getElementById("a-report-btn2").style.visibility = 'visible';
             document.getElementById("a-report-btn3").style.visibility = 'visible';
